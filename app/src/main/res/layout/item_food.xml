@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageFood"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textFoodName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tên món ăn:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        app:layout_constraintTop_toTopOf="@+id/imageFood"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textFoodPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Giá:"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        app:layout_constraintTop_toBottomOf="@+id/textFoodName"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textFoodDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mô tả:"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        app:layout_constraintTop_toBottomOf="@+id/textFoodPrice"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textFoodCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Danh mục:"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        app:layout_constraintTop_toBottomOf="@+id/textFoodDescription"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textFoodStore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cửa hàng:"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/imageFood"
+        app:layout_constraintTop_toBottomOf="@+id/textFoodCategory"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
