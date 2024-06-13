@@ -22,6 +22,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     List<Food> foods;
     Context context;
 
+
     public FoodAdapter(List<Food> foods, Context context) {
         this.foods = foods;
         this.context = context;
@@ -40,10 +41,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
         Food food = foods.get(position);
         holder.textFoodName.setText(food.getFoodName());
-        holder.textFoodPrice.setText(String.valueOf(food.getPrice()));
-        holder.textFoodDescription.setText(food.getDescription());
-        holder.textFoodCategory.setText(String.valueOf(food.getCategoryId()));
-        holder.textFoodStore.setText(String.valueOf(food.getStoreId()));
+        String priceWithCurrency = String.format("$%s", food.getPrice());
+        holder.textFoodPrice.setText(priceWithCurrency);
         Picasso.get().load(food.getFoodImage()).into(holder.foodImage);
         Log.d("FoodAdapter", "Image URL: " + food.getFoodImage());
 
@@ -55,15 +54,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textFoodName, textFoodPrice, textFoodDescription, textFoodCategory, textFoodStore;
+        private TextView textFoodName, textFoodPrice;
         private ImageView foodImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textFoodName = itemView.findViewById(R.id.textFoodName);
             textFoodPrice = itemView.findViewById(R.id.textFoodPrice);
-            textFoodDescription = itemView.findViewById(R.id.textFoodDescription);
-            textFoodCategory = itemView.findViewById(R.id.textFoodCategory);
-            textFoodStore = itemView.findViewById(R.id.textFoodStore);
             foodImage = itemView.findViewById(R.id.imageFood);
         }
     }

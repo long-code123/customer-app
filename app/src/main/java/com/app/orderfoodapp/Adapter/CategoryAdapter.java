@@ -1,6 +1,7 @@
 package com.app.orderfoodapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,21 +12,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.orderfoodapp.FoodsByCategoryActivity;
 import com.app.orderfoodapp.Model.Category;
 import com.app.orderfoodapp.Model.Food;
 import com.app.orderfoodapp.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
+    public interface OnCategoryClickListener {
+        void onCategoryClick(Category category);
+    }
     List<Category> categories;
     Context context;
+    private OnCategoryClickListener onCategoryClickListener;
 
-    public CategoryAdapter(List<Category> categories, Context context) {
+
+    public CategoryAdapter(List<Category> categories, Context context, OnCategoryClickListener onCategoryClickListener) {
         this.categories = categories;
         this.context = context;
+        this.onCategoryClickListener = onCategoryClickListener;
     }
 
     @NonNull
@@ -41,9 +51,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
         Category category = categories.get(position);
         holder.textCategoryName.setText(category.getCategoryName());
-        Picasso.get().load(category.getCategoryImage()).into(holder.categoryImage);
-        Log.d("CategoryAdapter", "Image URL: " + category.getCategoryImage());
+        Picasso
+                .get()
+                .load(category.getCategoryImage())
+                .into(holder.categoryImage);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onCategoryClickListener != null) {
+                    onCategoryClickListener.onCategoryClick(category);
+                }
 
+                // Chuyển sang FoodsByCategoryActivity và truyền dữ liệu danh mục
+                Intent intent = new Intent(context, FoodsByCategoryActivity.class);
+                intent.putExtra("categoryName", category.getCategoryName());
+                intent.putExtra("categoryId", category.getCategoryId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

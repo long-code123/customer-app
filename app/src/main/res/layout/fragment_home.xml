@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".Fragment.HomeFragment"
+    android:background="#ECEBE6">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/textViewGetMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -43,17 +44,18 @@
                     android:text="Have a nice day!"
                     android:textColor="@color/purple"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewGetMe"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGetMe" />
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imagePro"
+                    android:layout_width="100dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="100dp"
                     android:layout_marginEnd="32dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGetMe"
                     tools:src="@tools:sample/avatars" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,7 +96,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/textViewDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="November 12"
@@ -110,7 +112,7 @@
                         android:background="@drawable/background_login"
                         app:layout_constraintEnd_toEndOf="@+id/textView6"
                         app:layout_constraintStart_toStartOf="@+id/textView6"
-                        app:layout_constraintTop_toBottomOf="@+id/textView7">
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDate">
 
                         <TextView
                             android:id="@+id/textView8"

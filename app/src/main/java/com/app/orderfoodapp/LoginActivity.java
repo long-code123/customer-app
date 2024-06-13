@@ -1,6 +1,7 @@
 package com.app.orderfoodapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,6 +58,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (loginResponse != null) {
                         Log.e("long", "Token: " + loginResponse.getToken());
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("jwt_token", loginResponse.getToken());
+                        editor.apply();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
