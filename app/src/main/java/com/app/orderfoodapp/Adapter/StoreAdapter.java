@@ -61,7 +61,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
                 // Chuyển sang FoodsByCategoryActivity và truyền dữ liệu danh mục
                 Intent intent = new Intent(context, FoodsByStoreActivity.class);
-                intent.putExtra("storeName", store.getStoreName());
                 intent.putExtra("storeId", store.getStoreId());
                 context.startActivity(intent);
             }

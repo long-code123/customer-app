@@ -31,6 +31,11 @@ public class FoodsByStoreActivity extends AppCompatActivity {
     private FoodAdapter foodAdapter;
     private TextView tvStoreTitle;
     private ImageView btnBack;
+    private String storeName;
+    private String storeImage;
+    private int storeId;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +49,20 @@ public class FoodsByStoreActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerViewFoods.setLayoutManager(layoutManager);
 
-        String storeName = getIntent().getStringExtra("storeName");
-        int storeId = getIntent().getIntExtra("storeId", -1);
+        storeName = getIntent().getStringExtra("storeName");
+        Log.e("FoodsByStoreActivity", "Store Name: " + storeName);
+        storeImage = getIntent().getStringExtra("storeImage");
+        Log.e("FoodsByStoreActivity", "Store Image URL: " + storeImage);
+        storeId = getIntent().getIntExtra("storeId", -1);
 
         if (storeName != null) {
             tvStoreTitle.setText("List Food Of " + storeName);
+        }
+
+        if(storeImage == null){
+            Toast.makeText(this, "Invalid Store Image", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Have Store Image", Toast.LENGTH_SHORT).show();
         }
 
         // Gọi API để lấy danh sách món ăn theo danh mục
@@ -72,7 +86,20 @@ public class FoodsByStoreActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<Food> foods = response.body();
                     if (foods != null && !foods.isEmpty()) {
-                        foodAdapter = new FoodAdapter(foods, FoodsByStoreActivity.this);
+                        foodAdapter = new FoodAdapter(foods, FoodsByStoreActivity.this, new FoodAdapter.OnFoodClickListener() {
+                            @Override
+                            public void onFoodClick(Food food) {
+                                Intent intent = new Intent(FoodsByStoreActivity.this, FoodActivity.class);
+                                intent.putExtra("foodName", food.getFoodName());
+                                intent.putExtra("foodImage", food.getFoodImage());
+                                intent.putExtra("foodPrice", food.getPrice());
+                                intent.putExtra("foodDescription", food.getDescription());
+                                intent.putExtra("foodId", food.getFoodId());
+                                intent.putExtra("storeId", food.getStoreId());
+                                startActivity(intent);
+
+                            }
+                        });
                         recyclerViewFoods.setAdapter(foodAdapter);
                     } else {
                         Toast.makeText(FoodsByStoreActivity.this, "No foods found for this category.", Toast.LENGTH_SHORT).show();

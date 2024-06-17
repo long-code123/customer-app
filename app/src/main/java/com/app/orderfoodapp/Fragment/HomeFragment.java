@@ -27,6 +27,7 @@ import com.app.orderfoodapp.FoodsByCategoryActivity;
 import com.app.orderfoodapp.FoodsByStoreActivity;
 import com.app.orderfoodapp.Model.Category;
 import com.app.orderfoodapp.Model.Store;
+import com.app.orderfoodapp.Model.StoreRepository;
 import com.app.orderfoodapp.Model.User;
 import com.app.orderfoodapp.R;
 import com.squareup.picasso.Picasso;
@@ -45,8 +46,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewCategories;
     private RecyclerView recyclerViewStores;
     private CategoryAdapter categoryAdapter;
-    private StoreAdapter storeAdapter; // Adapter cho cửa hàng
-    private TextView dateTextView, textViewUserName; // Thêm TextView cho ngày
+    private StoreAdapter storeAdapter;
+    private TextView dateTextView, textViewUserName;
     private LoginAPI apiService;
     private ImageView imageProf;
 
@@ -118,11 +119,15 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful()) {
                     List<Store> stores = response.body();
                     if (stores != null && !stores.isEmpty()) {
+                        // Lưu trữ danh sách vào Singleton
+                        StoreRepository.getInstance().setStoreList(stores);
                         storeAdapter = new StoreAdapter(stores, getActivity(), new StoreAdapter.OnStoreClickListener() {
                             @Override
                             public void onStoreClick(Store store) {
+                                Log.d("HomeFragment", "Store Image URL: " + store.getStoreImage());
                                 Intent intent = new Intent(getActivity(), FoodsByStoreActivity.class);
                                 intent.putExtra("storeName", store.getStoreName());
+                                intent.putExtra("storeImage", store.getStoreImage());
                                 intent.putExtra("storeId", store.getStoreId());
                                 startActivity(intent);
                             }

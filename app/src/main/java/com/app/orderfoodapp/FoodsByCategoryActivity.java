@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.orderfoodapp.API.CategoryAPI;
 import com.app.orderfoodapp.Adapter.FoodAdapter;
 import com.app.orderfoodapp.Model.Food;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,7 +26,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FoodsByCategoryActivity extends AppCompatActivity {
-
+    private RelativeLayout cartBar;
+    private TextView tvCartItems, tvCartTotal;
+    private Button btnViewCart;
     private RecyclerView recyclerViewFoods;
     private FoodAdapter foodAdapter;
     private TextView tvCategoryTitle;
@@ -36,6 +39,7 @@ public class FoodsByCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foods_by_category);
+
 
         tvCategoryTitle = findViewById(R.id.tvCategoryTitle);
         recyclerViewFoods = findViewById(R.id.recyclerViewFoods);
@@ -74,7 +78,19 @@ public class FoodsByCategoryActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<Food> foods = response.body();
                     if (foods != null && !foods.isEmpty()) {
-                        foodAdapter = new FoodAdapter(foods, FoodsByCategoryActivity.this);
+                        foodAdapter = new FoodAdapter(foods, FoodsByCategoryActivity.this, new FoodAdapter.OnFoodClickListener() {
+                            @Override
+                            public void onFoodClick(Food food) {
+                                Intent intent = new Intent(FoodsByCategoryActivity.this, FoodActivity.class);
+                                intent.putExtra("foodName", food.getFoodName());
+                                intent.putExtra("foodImage", food.getFoodImage());
+                                intent.putExtra("foodPrice", food.getPrice());
+                                intent.putExtra("foodDescription", food.getDescription());
+                                intent.putExtra("foodId", food.getFoodId());
+                                intent.putExtra("storeId", food.getStoreId());
+                                startActivity(intent);
+                            }
+                        });
                         recyclerViewFoods.setAdapter(foodAdapter);
                     } else {
                         Toast.makeText(FoodsByCategoryActivity.this, "No foods found for this category.", Toast.LENGTH_SHORT).show();
@@ -94,3 +110,4 @@ public class FoodsByCategoryActivity extends AppCompatActivity {
         });
     }
 }
+

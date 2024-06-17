@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +10,9 @@
         android:id="@+id/btnBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:srcCompat="@drawable/back_btn" />
+        app:srcCompat="@drawable/back_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCategoryTitle"
@@ -19,16 +21,56 @@
         android:text="List Food Of Category"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true"/>
 
     <!-- RecyclerView để hiển thị danh sách món ăn -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFoods"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvCategoryTitle"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
-</RelativeLayout>
+        app:spanCount="2"
+        app:layout_constraintTop_toBottomOf="@id/tvCategoryTitle"
+        app:layout_constraintBottom_toTopOf="@id/cartBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Thanh bar giỏ hàng -->
+    <RelativeLayout
+        android:id="@+id/cartBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvCartItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Items: 0" />
+
+        <TextView
+            android:id="@+id/tvCartTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvCartItems"
+            android:layout_marginStart="16dp"
+            android:text="Total: $0.00" />
+
+        <Button
+            android:id="@+id/btnViewCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="View Cart" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
