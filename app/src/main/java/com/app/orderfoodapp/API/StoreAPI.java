@@ -19,8 +19,7 @@ public interface StoreAPI {
             .create();
 
     StoreAPI storeAPI = new Retrofit.Builder()
-//            .baseUrl("http://192.168.1.2:8000")
-            .baseUrl("http://10.0.4.233:8000")
+            .baseUrl("http://192.168.1.2:8000")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(StoreAPI.class);

@@ -16,22 +16,18 @@ import com.app.orderfoodapp.Fragment.HomeFragment;
 import com.app.orderfoodapp.Fragment.ProfileFragment;
 import com.app.orderfoodapp.Fragment.VoucherFragment;
 import com.app.orderfoodapp.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.app.orderfoodapp.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private Fragment currentFragment = null;
-    private static final String PREF_NAME = "CartPreferences";
-    private static final String KEY_DATA_CLEARED = "dataCleared";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        clearSharedPreferencesIfFirstLaunch(); // Gọi hàm để xóa dữ liệu từ SharedPreferences nếu là lần đầu khởi động
 
         // Ban đầu thay thế bằng HomeFragment
         currentFragment = new HomeFragment();
@@ -66,33 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-    }
-
-    private void clearSharedPreferencesIfFirstLaunch() {
-        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        boolean dataCleared = sharedPreferences.getBoolean(KEY_DATA_CLEARED, false);
-
-        if (!dataCleared) {
-            // Xóa dữ liệu từ SharedPreferences
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear(); // Xóa hết dữ liệu
-            editor.putBoolean(KEY_DATA_CLEARED, true); // Đặt biến đã xóa dữ liệu
-            editor.apply();
-            Log.d("MainActivity", "SharedPreferences cleared successfully.");
-        } else {
-            Log.d("MainActivity", "SharedPreferences already cleared.");
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     // Phương thức để thay thế fragment

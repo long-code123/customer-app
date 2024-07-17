@@ -80,11 +80,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnDecrease"
+            android:id="@+id/btnIncrease"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/background_login"
-            android:text="-"
+            android:text="+"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,11 +92,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnIncrease"
+            android:id="@+id/btnDecrease"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/background_login"
-            android:text="+"
+            android:text="-"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,8 +113,8 @@
             android:layout_marginBottom="8dp"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnDecrease"
-            app:layout_constraintStart_toEndOf="@+id/btnIncrease"
+            app:layout_constraintEnd_toStartOf="@+id/btnIncrease"
+            app:layout_constraintStart_toEndOf="@+id/btnDecrease"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

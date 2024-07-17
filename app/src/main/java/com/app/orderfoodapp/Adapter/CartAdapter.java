@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.orderfoodapp.Manager.CartManager;
 import com.app.orderfoodapp.Model.CartItem;
 import com.app.orderfoodapp.R;
 import com.squareup.picasso.Picasso;
@@ -89,8 +88,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             totalItem = itemView.findViewById(R.id.tvTotalItem);
             foodImage = itemView.findViewById(R.id.ivFoodImage);
             btnDelete = itemView.findViewById(R.id.btnDelete);
-            btnIncrease = itemView.findViewById(R.id.btnIncrease);
             btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
         }
     }
 

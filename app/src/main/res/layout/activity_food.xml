@@ -145,13 +145,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPlus"
+                android:id="@+id/btnSubstract"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="250dp"
+                android:layout_marginStart="120dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/background_login"
-                android:text="+"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -159,12 +159,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSubstract"
+                android:id="@+id/btnPlus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="120dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/background_login"
-                android:text="-"
+                android:text="+"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -180,8 +181,8 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnSubstract"
-                app:layout_constraintStart_toEndOf="@+id/btnPlus"
+                app:layout_constraintEnd_toStartOf="@+id/btnPlus"
+                app:layout_constraintStart_toEndOf="@+id/btnSubstract"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -199,7 +200,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- Thanh bar hiển thị thông tin giỏ hàng -->
     <RelativeLayout
         android:id="@+id/cartBar"
         android:layout_width="match_parent"
@@ -207,7 +207,8 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/background_login"
         android:paddingRight="16dp"
-        android:paddingLeft="16dp"> <!-- Ban đầu ẩn -->
+        android:paddingLeft="16dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvCartItems"

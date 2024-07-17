@@ -43,6 +43,9 @@ public class CartManager {
             }
         }
     }
+    public void clearCart() {
+        cartItems.clear();
+    }
 
     public List<CartItem> getCartItems() {
         return cartItems;

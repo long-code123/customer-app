@@ -3,6 +3,8 @@ package com.app.orderfoodapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,6 +35,9 @@ public class FoodActivity extends AppCompatActivity {
     private int totalItems = 0;
     private double totalPrice = 0.0;
 
+    // Biến để quản lý biểu tượng giỏ hàng
+    private TextView cartItemCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +50,8 @@ public class FoodActivity extends AppCompatActivity {
         btnbackDetail = findViewById(R.id.btnBackDetail);
         tvstoreName = findViewById(R.id.storeName);
         ivStoreFood = findViewById(R.id.imageStoreFood);
-        btnIncrease = findViewById(R.id.btnPlus);
         btnDecrease = findViewById(R.id.btnSubstract);
+        btnIncrease = findViewById(R.id.btnPlus);
         tvQuantityDetail = findViewById(R.id.tvQuantityDetail);
         btnAdd = findViewById(R.id.btnAdd);
 
@@ -101,6 +106,7 @@ public class FoodActivity extends AppCompatActivity {
             totalItems += quantity;
             totalPrice += quantity * foodPrice;
             updateCartBar();
+            updateCartIcon();
             Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
         });
 
@@ -123,6 +129,32 @@ public class FoodActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation_menu, menu);
+        MenuItem cartItem = menu.findItem(R.id.cart);
+        View actionView = cartItem.getActionView();
+
+        cartItemCount = actionView.findViewById(R.id.cartItemCount);
+
+        actionView.setOnClickListener(v -> onOptionsItemSelected(cartItem));
+
+        // Cập nhật số lượng món ăn khi menu được tạo
+        updateCartIcon();
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.cart) {
+            // Xử lý sự kiện khi nhấn vào biểu tượng giỏ hàng
+            Intent intent = new Intent(FoodActivity.this, CartFragment.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void updateCartBar() {
         if (totalItems > 0) {
@@ -131,6 +163,17 @@ public class FoodActivity extends AppCompatActivity {
             tvCartTotal.setText("Total: $" + String.format("%.2f", totalPrice));
         } else {
             cartBar.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateCartIcon() {
+        if (cartItemCount != null) {
+            if (totalItems > 0) {
+                cartItemCount.setText(String.valueOf(totalItems));
+                cartItemCount.setVisibility(View.VISIBLE);
+            } else {
+                cartItemCount.setVisibility(View.GONE);
+            }
         }
     }
 }
