@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp"
-    app:cardCornerRadius="15dp"
-    android:elevation="3dp">
+    app:cardCornerRadius="15dp">
 
 <LinearLayout
     android:layout_width="wrap_content"
@@ -25,14 +24,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/background_forget_password" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonAdd"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="bottom|end"
-            android:background="@drawable/plus_background"
-            android:text="+"
-            android:textColor="@android:color/white" />
     </FrameLayout>
 
     <TextView
@@ -51,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giá"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="#1BB040"
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_marginTop="4dp"

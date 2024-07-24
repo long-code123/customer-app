@@ -1,5 +1,6 @@
 package com.app.orderfoodapp.API;
 
+import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Model.Food;
 import com.app.orderfoodapp.Model.Store;
 import com.google.gson.Gson;
@@ -19,7 +20,7 @@ public interface StoreAPI {
             .create();
 
     StoreAPI storeAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:8000")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(StoreAPI.class);

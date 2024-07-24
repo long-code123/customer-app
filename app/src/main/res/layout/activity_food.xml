@@ -79,7 +79,7 @@
                 <ImageView
                     android:id="@+id/imageDetailFood"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="330dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
-                android:textColor="@color/purple"
+                android:textColor="#1BB040"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/foodName"
@@ -150,7 +150,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="120dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/background_login"
+                android:background="@drawable/button"
                 android:text="-"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -164,7 +164,7 @@
                 android:layout_height="40dp"
                 android:layout_marginEnd="120dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/background_login"
+                android:background="@drawable/button"
                 android:text="+"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -190,7 +190,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/background_login"
+                android:background="@drawable/button"
                 android:text="Add to cart"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -205,7 +205,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/background_login"
+        android:background="@drawable/button"
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
         android:visibility="gone">
@@ -218,7 +218,7 @@
             android:layout_centerVertical="true"
             android:text="Items: 0"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tvCartTotal"
@@ -230,15 +230,6 @@
             android:text="Total: $0.00"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnViewCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:backgroundTint="@android:color/white"
-            android:text="View Cart" />
     </RelativeLayout>
 
 </RelativeLayout>

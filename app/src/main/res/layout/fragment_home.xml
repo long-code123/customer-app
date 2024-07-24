@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.HomeFragment"
-    android:background="#ECEBE6">
+    tools:context=".Fragment.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                     android:layout_marginTop="32dp"
                     android:text="Hi Long"
                     android:gravity="center"
-                    android:textColor="@color/purple"
+                    android:textColor="@color/black"
                     android:textSize="28sp"
                     android:drawableStart="@drawable/smile_icon"
                     android:drawablePadding="4dp"
@@ -42,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Have a nice day!"
-                    android:textColor="@color/purple"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/textViewGetMe"
                     app:layout_constraintTop_toBottomOf="@+id/textViewGetMe" />
@@ -109,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:background="@drawable/background_login"
+                        android:background="#1BB040"
                         app:layout_constraintEnd_toEndOf="@+id/textView6"
                         app:layout_constraintStart_toStartOf="@+id/textView6"
                         app:layout_constraintTop_toBottomOf="@+id/textViewDate">

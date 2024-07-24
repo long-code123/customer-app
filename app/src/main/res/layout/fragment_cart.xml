@@ -276,7 +276,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/icon_arrow_right"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPaymentMethod"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView26" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -287,8 +287,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_gravity="center"
-                android:background="@drawable/background_login"
-                android:text="Order Now" />
+                android:background="@drawable/button"
+                android:text="Order Now"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
     </ScrollView>

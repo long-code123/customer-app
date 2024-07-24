@@ -1,5 +1,6 @@
 package com.app.orderfoodapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,9 @@ import com.app.orderfoodapp.Fragment.ProfileFragment;
 import com.app.orderfoodapp.Fragment.VoucherFragment;
 import com.app.orderfoodapp.databinding.ActivityMainBinding;
 
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPaySDK;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // ZaloPay SDK init
+        ZaloPaySDK.init(2553, Environment.SANDBOX);
 
         // Ban đầu thay thế bằng HomeFragment
         currentFragment = new HomeFragment();
@@ -73,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null); // Thêm Fragment vào back stack để hỗ trợ back navigation
             fragmentTransaction.commitAllowingStateLoss(); // Thực hiện FragmentTransaction an toàn
         }
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        ZaloPaySDK.getInstance().onResult(intent);
     }
 }
 

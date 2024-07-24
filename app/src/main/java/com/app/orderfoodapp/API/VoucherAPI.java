@@ -1,5 +1,6 @@
 package com.app.orderfoodapp.API;
 
+import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Model.Category;
 import com.app.orderfoodapp.Model.Voucher;
 import com.google.gson.Gson;
@@ -18,7 +19,7 @@ public interface VoucherAPI {
             .create();
 
     VoucherAPI voucherAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:8000")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(VoucherAPI.class);

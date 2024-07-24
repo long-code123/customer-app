@@ -25,6 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation_menu"
-        app:itemTextColor="@color/purple"
-        app:itemIconTint="@color/purple"/>
+        app:itemTextColor="#0f6123"
+        app:itemIconTint="#1BB040"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,12 +65,5 @@
             android:layout_toEndOf="@id/tvCartItems"
             android:layout_marginStart="16dp"
             android:text="Total: $0.00" />
-
-        <Button
-            android:id="@+id/btnViewCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="View Cart" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

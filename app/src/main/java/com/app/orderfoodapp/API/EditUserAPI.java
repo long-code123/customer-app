@@ -1,5 +1,6 @@
 package com.app.orderfoodapp.API;
 
+import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Model.RegisterRequest;
 import com.app.orderfoodapp.Model.RegisterResponse;
 import com.google.gson.Gson;
@@ -17,7 +18,7 @@ public interface EditUserAPI {
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
     EditUserAPI editUserAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:8000")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(EditUserAPI.class);

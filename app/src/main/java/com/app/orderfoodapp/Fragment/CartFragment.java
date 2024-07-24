@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.app.orderfoodapp.API.LoginAPI;
 import com.app.orderfoodapp.Adapter.CartAdapter;
+import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Manager.CartManager;
 import com.app.orderfoodapp.Model.CartItem;
 import com.app.orderfoodapp.Model.OrderItem;
@@ -95,9 +96,6 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        // ZaloPay SDK init
-        ZaloPaySDK.init(2553, Environment.SANDBOX);
 
         recyclerViewCart.setLayoutManager(new LinearLayoutManager(getContext()));
         updateCart();
@@ -237,7 +235,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         RequestBody body = RequestBody.create(json, MediaType.get("application/json; charset=utf-8"));
 
         Request request = new Request.Builder()
-                .url("http://192.168.1.2:8000/api/v1/orders/orders")
+                .url(Constants.BASE_URL + "/api/v1/orders/orders")
                 .post(body)
                 .build();
 

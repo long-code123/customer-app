@@ -350,7 +350,7 @@
                 android:id="@+id/btnLogout"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_login"
+                android:background="@drawable/button"
                 android:layout_gravity="center"
                 android:text="Log out"
                 android:textColor="@color/white" />

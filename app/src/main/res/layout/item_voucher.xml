@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +37,7 @@
             android:text="30%"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="#1BB040"
             android:layout_marginTop="8dp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Add Voucher"
             android:textColor="@color/white"
-            android:background="@drawable/background_login"/>
+            android:background="@drawable/button"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

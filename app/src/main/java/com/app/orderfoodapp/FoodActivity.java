@@ -59,7 +59,6 @@ public class FoodActivity extends AppCompatActivity {
         cartBar = findViewById(R.id.cartBar);
         tvCartItems = findViewById(R.id.tvCartItems);
         tvCartTotal = findViewById(R.id.tvCartTotal);
-        btnViewCart = findViewById(R.id.btnViewCart);
 
         // Nhận dữ liệu từ Intent
         int foodId = getIntent().getIntExtra("foodId", -1);
@@ -120,12 +119,6 @@ public class FoodActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Store not found", Toast.LENGTH_SHORT).show();
             }
-        });
-
-        btnViewCart.setOnClickListener(v -> {
-            // Xử lý sự kiện khi nhấn vào nút View Cart
-            Intent intent = new Intent(FoodActivity.this, CartFragment.class);
-            startActivity(intent);
         });
     }
 

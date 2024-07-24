@@ -1,5 +1,6 @@
 package com.app.orderfoodapp.API;
 
+import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Model.Food;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +17,7 @@ public interface FoodAPI {
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
     FoodAPI foodAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:8000")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(FoodAPI.class);
