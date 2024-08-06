@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap gMap;
+    private GoogleMap ddd; // sao cai ni xanh nuoc bien? vi thay doi nen xanh nuoc bien tao file moi moi xanh la cay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

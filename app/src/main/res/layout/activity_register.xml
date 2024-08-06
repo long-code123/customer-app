@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="#1BB040"
+            android:background="@drawable/loginregisterbackground"
             android:gravity="center"
             android:orientation="vertical">
 

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
+                    Log.e("userId", String.valueOf(user.getUserId()));
                     Picasso.get().load(user.getUserImage()).into(imageProfile);
                     textViewNameProf.setText(user.getUserName());
                     textViewGmailProf.setText(user.getEmail());

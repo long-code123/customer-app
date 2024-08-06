@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="$0"
-        android:textColor="@color/purple"
+        android:textColor="#1BB040"
         android:textStyle="bold"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

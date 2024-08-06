@@ -33,7 +33,6 @@ import com.app.orderfoodapp.OSMActivity;
 import com.app.orderfoodapp.R;
 import com.app.orderfoodapp.Zalopay.Api.CreateOrder;
 import com.google.gson.Gson;
-import vn.zalopay.sdk.Environment;
 import vn.zalopay.sdk.ZaloPayError;
 import vn.zalopay.sdk.ZaloPaySDK;
 import vn.zalopay.sdk.listeners.PayOrderListener;
@@ -63,6 +62,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
     private LoginAPI apiService;
     private String paymentMethod = "Cash"; // Default payment method
     private double distanceKm = 0.0; // Distance in kilometers for delivery calculation
+    private int userIdCart; // Get Id user.
 
     public CartFragment() {
     }
@@ -93,6 +93,9 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         btnPaymentMethod = view.findViewById(R.id.btnPaymentMethod);
         tvPaymentMethod = view.findViewById(R.id.tvPaymentMethod);
         apiService = LoginAPI.loginAPI;
+
+        //Get UserId
+
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -140,6 +143,8 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
                     tvAddress.setText(user.getAddress());
+                    Log.e("userId", String.valueOf(user.getUserId()));
+                    userIdCart = user.getUserId();
                 } else {
                     Toast.makeText(getActivity(), "Failed to get user information", Toast.LENGTH_SHORT).show();
                 }
@@ -227,7 +232,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         for (CartItem cartItem : cartItems) {
             orderItems.add(new OrderItem(cartItem.getId(), cartItem.getQuantity()));
         }
-        OrderRequest orderRequest = new OrderRequest(calculateDeliveryTime(distanceKm), 1, 1, orderItems);
+        OrderRequest orderRequest = new OrderRequest(calculateDeliveryTime(distanceKm), userIdCart, 1, orderItems);
 
         OkHttpClient client = new OkHttpClient();
         Gson gson = new Gson();
