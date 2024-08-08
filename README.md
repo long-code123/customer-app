@@ -14,9 +14,9 @@ FoodShipperApp is an Android mobile application that makes it easy for users to 
 - **Languages**: Java
 - **Framework**: Android SDK
 - **Backend**: Node.js, Express
-- **Database**: Postgres
+- **Database**: Postgres, Sequelize 
 - **APIs**: Open Street Map API, ZaloPay SDK
-- **Other Tools**: Retrofit, Glide
+- **Other Tools**: Retrofit, Piscasso
 
 ## 🚀 Getting Started
 
