@@ -56,27 +56,38 @@ FoodShipperApp is an Android mobile application that makes it easy for users to 
 
 5. **Track Order**:
    - After placing your order, monitor its progress through the "Order History" section of the app.
-
 ## 📷 Screenshots
+
 1. **Splash Screen**
-   ![image](https://github.com/user-attachments/assets/18a4367b-7f09-4860-8683-df3bdd3f7576)
+   ![Splash Screen](https://github.com/user-attachments/assets/18a4367b-7f09-4860-8683-df3bdd3f7576)
+
 2. **Login Screen**
-   ![image](https://github.com/user-attachments/assets/4475b8ad-9b1f-440c-8357-17d4bc973cdb)
+   ![Login Screen](https://github.com/user-attachments/assets/4475b8ad-9b1f-440c-8357-17d4bc973cdb)
+
 3. **Register Screen**
-   ![image](https://github.com/user-attachments/assets/caf815fa-02b2-4ccd-a708-e09952729f21)
+   ![Register Screen](https://github.com/user-attachments/assets/caf815fa-02b2-4ccd-a708-e09952729f21)
+
 4. **Home Screen**
-   ![image](https://github.com/user-attachments/assets/1a660f24-bb40-43ac-a168-01772d19d3a4)
+   ![Home Screen](https://github.com/user-attachments/assets/1a660f24-bb40-43ac-a168-01772d19d3a4)
+
 5. **Voucher Screen**
-    ![image](https://github.com/user-attachments/assets/7115faf4-2dd9-4919-ab36-2b64657cedad)
+   ![Voucher Screen](https://github.com/user-attachments/assets/7115faf4-2dd9-4919-ab36-2b64657cedad)
+
 6. **Cart Screen**
-    ![image](https://github.com/user-attachments/assets/acc601e1-4aea-4cad-a264-754fe8953aa4)
+   ![Cart Screen](https://github.com/user-attachments/assets/acc601e1-4aea-4cad-a264-754fe8953aa4)
+
 7. **Profile Screen**
-    ![image](https://github.com/user-attachments/assets/34ea6832-b82c-42da-8055-a2519c158817)
+   ![Profile Screen](https://github.com/user-attachments/assets/34ea6832-b82c-42da-8055-a2519c158817)
+
 8. **List Food Screen**
-    ![image](https://github.com/user-attachments/assets/16719e3a-b22e-4214-8e98-1cec766c1b70)
+   ![List Food Screen](https://github.com/user-attachments/assets/16719e3a-b22e-4214-8e98-1cec766c1b70)
+
 9. **Detail Food Screen**
-    ![image](https://github.com/user-attachments/assets/43bca586-2c6e-4892-a0e2-ff3d498e06c6)
+   ![Detail Food Screen](https://github.com/user-attachments/assets/43bca586-2c6e-4892-a0e2-ff3d498e06c6)
+
 10. **Map Screen**
-    ![image](https://github.com/user-attachments/assets/8ad3c07d-b348-4291-84b9-985e3bd90292)
+    ![Map Screen](https://github.com/user-attachments/assets/8ad3c07d-b348-4291-84b9-985e3bd90292)
+
 11. **Delivery Screen**
+
 
