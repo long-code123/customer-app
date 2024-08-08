@@ -8,7 +8,6 @@ FoodShipperApp is an Android mobile application that makes it easy for users to 
 - **Order Food**: Select your favorite dishes from the menu and place an order instantly.
 - **Track Orders**: Check the real-time status of your order.
 - **Secure Payment**: Supports multiple secure and convenient payment methods.
-- **Order History**: Review your previous orders.
 
 ## 🖥️ Technology Stack
 
