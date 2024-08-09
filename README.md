@@ -22,8 +22,8 @@ FoodShipperApp is an Android mobile application that makes it easy for users to 
 
 1. **Clone the repository from GitHub**:
    ```bash
-   git clone https://github.com/long-code123/shipper-app.git
-   cd shipper-app
+   git clone https://github.com/long-code123/customer-app.git
+   cd customer-app
    ```
 2. Open the project in Android Studio.
 3. Install dependencies:
