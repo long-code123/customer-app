@@ -1,6 +1,6 @@
-# FoodShipperApp
+# FoodOrderApp
 
-FoodShipperApp is an Android mobile application that makes it easy for users to order food online from nearby restaurants. With a user-friendly interface and convenient features, FoodShipperApp offers a quick and efficient food ordering experience.
+FoodOrderApp is an Android mobile application that makes it easy for users to order food online from nearby restaurants. With a user-friendly interface and convenient features, FoodOrderApp offers a quick and efficient food ordering experience.
 
 ## 📱 Main Features
 
