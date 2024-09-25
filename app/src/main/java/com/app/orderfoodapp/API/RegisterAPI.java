@@ -21,6 +21,6 @@ public interface RegisterAPI {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(RegisterAPI.class);
-    @POST("/api/v1/users")
+    @POST("/api/v1/customer/users")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 }

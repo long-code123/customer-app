@@ -25,9 +25,9 @@ public interface CategoryAPI {
             .build()
             .create(CategoryAPI.class);
 
-    @GET("/api/v1/categories")
+    @GET("/api/v1/customer/categories")
     Call<List<Category>> getAllCategories();
 
-    @GET("/api/v1/categories/{id}/foods")
+    @GET("/api/v1/customer/categories/{id}/foods")
     Call<List<Food>> getFoodsByCategory(@Path("id") int categoryId);
 }

@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.orderfoodapp.API.LoginAPI;
+import com.app.orderfoodapp.MainActivity;
 import com.app.orderfoodapp.Model.LoginRequest;
 import com.app.orderfoodapp.Model.LoginResponse;
+import com.app.orderfoodapp.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;

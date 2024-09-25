@@ -12,8 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.orderfoodapp.FoodsByCategoryActivity;
-import com.app.orderfoodapp.FoodsByStoreActivity;
+import com.app.orderfoodapp.Activity.FoodsByStoreActivity;
 import com.app.orderfoodapp.Model.Category;
 import com.app.orderfoodapp.Model.Store;
 import com.app.orderfoodapp.R;

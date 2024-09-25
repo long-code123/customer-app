@@ -25,9 +25,9 @@ public interface StoreAPI {
             .build()
             .create(StoreAPI.class);
 
-    @GET("/api/v1/stores")
+    @GET("/api/v1/customer/stores")
     Call<List<Store>> getAllStores();
 
-    @GET("/api/v1/stores/{id}/foods")
+    @GET("/api/v1/customer/stores/{id}/foods")
     Call<List<Food>> getFoodsByStore(@Path("id") int storeId);
 }

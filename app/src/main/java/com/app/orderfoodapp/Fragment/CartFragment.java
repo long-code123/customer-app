@@ -1,6 +1,7 @@
 package com.app.orderfoodapp.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,8 @@ import com.app.orderfoodapp.Model.CartItem;
 import com.app.orderfoodapp.Model.OrderItem;
 import com.app.orderfoodapp.Model.OrderRequest;
 import com.app.orderfoodapp.Model.User;
-import com.app.orderfoodapp.OSMActivity;
+import com.app.orderfoodapp.Activity.OSMActivity;
+import com.app.orderfoodapp.Model.Voucher;
 import com.app.orderfoodapp.R;
 import com.app.orderfoodapp.Zalopay.Api.CreateOrder;
 import com.google.gson.Gson;
@@ -56,7 +58,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
     private static final int REQUEST_CODE_OSM_ACTIVITY = 1;
 
     private RecyclerView recyclerViewCart;
-    private TextView tvSubtotal, tvDelivery, tvTax, tvTotal, tvAddress, tvPaymentMethod;
+    private TextView tvSubtotal, tvDelivery, tvTax, tvVoucher, tvTotal, tvAddress, tvPaymentMethod;
     private Button btnOrderNow;
     private ImageView btnAddress, btnPaymentMethod;
     private LoginAPI apiService;
@@ -86,6 +88,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         tvSubtotal = view.findViewById(R.id.tvSubtotal);
         tvDelivery = view.findViewById(R.id.tvDelivery);
         tvTax = view.findViewById(R.id.tvTax);
+        tvVoucher = view.findViewById(R.id.tvVoucher);
         tvTotal = view.findViewById(R.id.tvTotal);
         tvAddress = view.findViewById(R.id.tvAddress);
         btnOrderNow = view.findViewById(R.id.btnOrderNow);
@@ -93,6 +96,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         btnPaymentMethod = view.findViewById(R.id.btnPaymentMethod);
         tvPaymentMethod = view.findViewById(R.id.tvPaymentMethod);
         apiService = LoginAPI.loginAPI;
+
 
         //Get UserId
 
@@ -213,11 +217,24 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
 
         double tax = subtotal * 0.1;
         double deliveryFeeUSD = distanceKm * 3000 / 24000; // Shipping cost (1 km = 3000 VND, exchange rate 24000 VND = 1 USD)
-        double total = subtotal + tax + deliveryFeeUSD;
+        // Lấy voucher từ SharedPreferences
+        Voucher voucher = getSavedVoucherFromPreferences();
+
+        double discount = 0.0;
+        if (voucher != null) {
+            String description = voucher.getDescription();
+            int percentage = parseDiscountPercentage(description);
+
+            // Tính chiết khấu tối đa dựa trên value
+            double maxDiscount = voucher.getValue(); // Tối đa có thể giảm
+            discount = Math.min((percentage / 100.0) * subtotal, maxDiscount); // Tính chiết khấu theo tỷ lệ và giới hạn bởi maxDiscount
+        }
+        double total = subtotal + tax + deliveryFeeUSD - discount; // Trừ chiết khấu từ tổng
 
         tvSubtotal.setText(String.format("$%.2f", subtotal));
         tvTax.setText(String.format("$%.2f", tax));
         tvDelivery.setText(String.format("$%.2f", deliveryFeeUSD));
+        tvVoucher.setText(String.format("$%.2f", discount));
         tvTotal.setText(String.format("$%.2f", total));
     }
 
@@ -334,6 +351,40 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
             e.printStackTrace();
         }
     }
+
+    private Voucher getSavedVoucherFromPreferences() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("app_preferences", Context.MODE_PRIVATE);
+
+        // Lấy thông tin voucher từ SharedPreferences
+        int voucherId = sharedPreferences.getInt("voucherId", -1); // -1 là giá trị mặc định nếu không tìm thấy
+        String voucherDescription = sharedPreferences.getString("voucherDescription", null);
+        Double voucherValue = (double) sharedPreferences.getFloat("voucherValue", 0.0f);
+        String voucherConditition = "abc";
+
+        // Nếu voucherId không hợp lệ (không tồn tại), trả về null
+        if (voucherId == -1) {
+            return null;
+        }
+
+        // Tạo đối tượng Voucher và trả về
+        return new Voucher(voucherId, voucherDescription, voucherValue, voucherConditition, 0);
+    }
+
+    private int parseDiscountPercentage(String description) {
+        try {
+            // Tìm kiếm phần trăm trong chuỗi
+            String[] parts = description.split(" ");
+            for (String part : parts) {
+                if (part.endsWith("%")) {
+                    return Integer.parseInt(part.replace("%", "")); // Trả về giá trị số nguyên
+                }
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return 0; // Trả về 0 nếu không tìm thấy phần trăm
+    }
+
 
 }
 

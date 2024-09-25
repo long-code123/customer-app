@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.app.orderfoodapp.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

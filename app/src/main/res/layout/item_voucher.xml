@@ -41,6 +41,7 @@
             android:layout_marginTop="8dp" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddVoucher"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Add Voucher"

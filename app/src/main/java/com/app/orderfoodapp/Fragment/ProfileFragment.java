@@ -18,8 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.orderfoodapp.API.LoginAPI;
-import com.app.orderfoodapp.EditProfileActivity;
-import com.app.orderfoodapp.LoginActivity;
+import com.app.orderfoodapp.Activity.LoginActivity;
 import com.app.orderfoodapp.Model.User;
 import com.app.orderfoodapp.R;
 import com.squareup.picasso.Picasso;

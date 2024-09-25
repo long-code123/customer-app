@@ -29,10 +29,10 @@ public interface LoginAPI {
             .build()
             .create(LoginAPI.class);
 
-    @POST("/api/v1/login")
+    @POST("/api/v1/customer/login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @GET("/api/v1/login/me")
+    @GET("/api/v1/customer/login/me")
     Call<User> getCurrentUser(@Header("Authorization") String token);
 }
 

@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.app.orderfoodapp.R;
+
 public class DeliveryProgressActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private TextView tvProgress;
-    private ImageView imgDelivery;
+    private ImageView imgDelivery; //thu commit cai nua cai
     private int progressStatus = 0;
     private Handler handler = new Handler(Looper.getMainLooper());
 

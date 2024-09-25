@@ -22,6 +22,6 @@ public interface FoodAPI {
             .build()
             .create(FoodAPI.class);
 
-    @GET("/api/v1/foods")
+    @GET("/api/v1/customer/foods")
     Call<List<Food>> getAllFood();
 }

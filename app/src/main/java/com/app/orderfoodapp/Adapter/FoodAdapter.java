@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.orderfoodapp.FoodActivity;
+import com.app.orderfoodapp.Activity.FoodActivity;
 import com.app.orderfoodapp.Model.Food;
 import com.app.orderfoodapp.R;
 import com.squareup.picasso.Picasso;

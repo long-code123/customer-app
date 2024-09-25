@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import com.app.orderfoodapp.Manager.CartManager;
 import com.app.orderfoodapp.Model.CartItem;
 import com.app.orderfoodapp.Model.Store;
 import com.app.orderfoodapp.Model.StoreRepository;
+import com.app.orderfoodapp.R;
 import com.squareup.picasso.Picasso;
 
 public class FoodActivity extends AppCompatActivity {

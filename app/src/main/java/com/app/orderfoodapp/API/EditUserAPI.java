@@ -22,5 +22,5 @@ public interface EditUserAPI {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(EditUserAPI.class);
-    @PUT("/api/v1/users/{id}/user")
+    @PUT("/api/v1/customer/users/{id}/user")
     Call<RegisterResponse> editUser(@Path("id") String userId, @Body RegisterRequest registerRequest);}

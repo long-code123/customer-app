@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.orderfoodapp.API.LoginAPI;
 import com.app.orderfoodapp.API.RegisterAPI;
 import com.app.orderfoodapp.Model.RegisterRequest;
 import com.app.orderfoodapp.Model.RegisterResponse;
+import com.app.orderfoodapp.R;
 
 import java.io.IOException;
 import java.util.Calendar;

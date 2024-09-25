@@ -1,4 +1,4 @@
-package com.app.orderfoodapp;
+package com.app.orderfoodapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
@@ -17,8 +17,7 @@ import com.app.orderfoodapp.API.LoginAPI;
 import com.app.orderfoodapp.Model.RegisterRequest;
 import com.app.orderfoodapp.Model.RegisterResponse;
 import com.app.orderfoodapp.Model.User;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+import com.app.orderfoodapp.R;
 
 import java.io.IOException;
 import java.util.Calendar;
