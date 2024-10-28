@@ -9,9 +9,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.app.orderfoodapp.API.StoreAPI;
+import com.app.orderfoodapp.API.StoreOKAPI;
+import com.app.orderfoodapp.Model.Store;
 import com.app.orderfoodapp.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -36,6 +40,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 public class OSMActivity extends AppCompatActivity {
     private MapView map;
     private ImageView btnBack;
@@ -45,6 +50,8 @@ public class OSMActivity extends AppCompatActivity {
     private List<Polyline> polylines = new ArrayList<>();  // Lưu trữ các đối tượng Polyline
     private String searchedAddress;  // Biến lưu địa chỉ mới tìm kiếm
     private double distance; // Biến lưu khoảng cách
+    private int storeId; // Lưu storeId
+    private String storeAddress; // Địa chỉ của cửa hàng
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +95,14 @@ public class OSMActivity extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         // Đặt vị trí trung tâm và mức zoom ban đầu
+        storeId = getIntent().getIntExtra("storeId", -1);
+
+        if (storeId != -1) {
+            // Gọi API để lấy địa chỉ cửa hàng
+            getStoreAddress(storeId);
+        } else {
+            Toast.makeText(this, "Store ID is invalid", Toast.LENGTH_SHORT).show();
+        }
         startPoint = new GeoPoint(16.0655, 108.2013); // Sẽ được cập nhật bởi kết quả tìm kiếm
         endPoint = new GeoPoint(16.0544, 108.2022);
         map.getController().setZoom(20.0);
@@ -100,6 +115,66 @@ public class OSMActivity extends AppCompatActivity {
 
         // Hiển thị đường đi và khoảng cách
         displayRouteAndDistance(startPoint, endPoint);
+    }
+    private void getStoreAddress(int storeId) {
+        StoreOKAPI storeOKAPI = new StoreOKAPI(); // Tạo một thể hiện của StoreOKAPI
+        storeOKAPI.getStoreAddress(storeId, new StoreOKAPI.AddressCallback() {
+            @Override
+            public void onSuccess(String address) {
+                // Lấy địa chỉ từ phản hồi
+                Log.d("Store Address", address);
+                // Gọi hàm để tìm kiếm địa chỉ và gán lat, lon vào endPoint
+                searchAddressAndSetEndPoint(address);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(OSMActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void searchAddressAndSetEndPoint(String address) {
+        // Sử dụng Nominatim API hoặc một dịch vụ geocoding khác để tìm kiếm địa chỉ
+        String url = "https://nominatim.openstreetmap.org/search?q=" + address + "&format=json&addressdetails=1";
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    JsonArray jsonArray = new Gson().fromJson(responseData, JsonArray.class);
+
+                    if (jsonArray.size() > 0) {
+                        JsonObject location = jsonArray.get(0).getAsJsonObject();
+                        double lat = location.get("lat").getAsDouble();
+                        double lon = location.get("lon").getAsDouble();
+
+                        // Cập nhật endPoint với lat và lon tìm được
+                        endPoint = new GeoPoint(lat, lon);
+
+                        runOnUiThread(() -> {
+                            // Cập nhật vị trí trên bản đồ
+                            map.getController().setCenter(endPoint);
+                            // Có thể hiển thị đường đi từ startPoint đến endPoint
+                            displayRouteAndDistance(startPoint, endPoint);
+                        });
+                    } else {
+                        runOnUiThread(() -> Toast.makeText(OSMActivity.this, "Address not found", Toast.LENGTH_SHORT).show());
+                    }
+                }
+            }
+        });
     }
 
     private void addMarker(GeoPoint point, String title, String description) {
@@ -154,6 +229,7 @@ public class OSMActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void drawRoute(List<GeoPoint> geoPoints) {
         Polyline line = new Polyline();
@@ -222,5 +298,7 @@ public class OSMActivity extends AppCompatActivity {
         super.onPause();
         map.onPause();
     }
+
+
 }
 

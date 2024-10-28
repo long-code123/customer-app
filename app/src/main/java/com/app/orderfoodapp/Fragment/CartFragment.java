@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.orderfoodapp.API.LoginAPI;
+import com.app.orderfoodapp.Activity.DeliveryProgressActivity;
 import com.app.orderfoodapp.Adapter.CartAdapter;
 import com.app.orderfoodapp.Config.Constants;
 import com.app.orderfoodapp.Manager.CartManager;
@@ -58,9 +59,9 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
     private static final int REQUEST_CODE_OSM_ACTIVITY = 1;
 
     private RecyclerView recyclerViewCart;
-    private TextView tvSubtotal, tvDelivery, tvTax, tvVoucher, tvTotal, tvAddress, tvPaymentMethod;
+    private TextView tvSubtotal, tvDelivery, tvTax, tvVoucher, tvTotal, tvAddress, tvPaymentMethod, tvDeliveryInfor;
     private Button btnOrderNow;
-    private ImageView btnAddress, btnPaymentMethod;
+    private ImageView btnAddress, btnPaymentMethod, btnDeliveryInfor;
     private LoginAPI apiService;
     private String paymentMethod = "Cash"; // Default payment method
     private double distanceKm = 0.0; // Distance in kilometers for delivery calculation
@@ -95,12 +96,11 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         btnAddress = view.findViewById(R.id.btnAddress);
         btnPaymentMethod = view.findViewById(R.id.btnPaymentMethod);
         tvPaymentMethod = view.findViewById(R.id.tvPaymentMethod);
+        tvDeliveryInfor = view.findViewById(R.id.tvDeliveryInfor);
+        btnDeliveryInfor = view.findViewById(R.id.btnDeliveryInfor);
         apiService = LoginAPI.loginAPI;
 
-
         //Get UserId
-
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -122,11 +122,17 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         btnAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                List<CartItem> cartItems = CartManager.getInstance().getCartItems();
+                int storeId = -1;
+                if (!cartItems.isEmpty()) {
+                    storeId = cartItems.get(0).getStoreId();
+                }
                 // Get address from TextView
                 String address = tvAddress.getText().toString();
 
                 Intent intent = new Intent(getActivity(), OSMActivity.class);
                 intent.putExtra("ADDRESS", address);
+                intent.putExtra("storeId", storeId);
                 startActivityForResult(intent, REQUEST_CODE_OSM_ACTIVITY);
             }
         });
@@ -137,6 +143,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
                 showPaymentMethodDialog();
             }
         });
+
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPrefs", getContext().MODE_PRIVATE);
         String token = sharedPreferences.getString("jwt_token", "");
@@ -149,6 +156,14 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
                     tvAddress.setText(user.getAddress());
                     Log.e("userId", String.valueOf(user.getUserId()));
                     userIdCart = user.getUserId();
+                    btnDeliveryInfor.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), DeliveryProgressActivity.class);
+                            intent.putExtra("USER_ID", userIdCart);
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     Toast.makeText(getActivity(), "Failed to get user information", Toast.LENGTH_SHORT).show();
                 }
@@ -174,6 +189,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
                 String deliveryTime = calculateDeliveryTime(distanceKm);
                 tvDelivery.setText(deliveryTime);
                 updateTotals(CartManager.getInstance().getCartItems());
+                tvDeliveryInfor.setText(deliveryTime);
             }
         }
 
@@ -246,10 +262,14 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
     private void createOrder() {
         List<CartItem> cartItems = CartManager.getInstance().getCartItems();
         List<OrderItem> orderItems = new ArrayList<>();
+
+        // Lấy storeId từ món hàng đầu tiên trong giỏ hàng
+        int storeId = cartItems.get(0).getStoreId();
+        Log.d("Cart Fragment", "Store Id: " + storeId);
         for (CartItem cartItem : cartItems) {
             orderItems.add(new OrderItem(cartItem.getId(), cartItem.getQuantity()));
         }
-        OrderRequest orderRequest = new OrderRequest(calculateDeliveryTime(distanceKm), userIdCart, 1, orderItems);
+        OrderRequest orderRequest = new OrderRequest(calculateDeliveryTime(distanceKm), userIdCart, null, "pending", storeId, orderItems);
 
         OkHttpClient client = new OkHttpClient();
         Gson gson = new Gson();
@@ -257,7 +277,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnQuantityChan
         RequestBody body = RequestBody.create(json, MediaType.get("application/json; charset=utf-8"));
 
         Request request = new Request.Builder()
-                .url(Constants.BASE_URL + "/api/v1/orders/orders")
+                .url(Constants.BASE_URL + "/api/v1/customer/orders/orders")
                 .post(body)
                 .build();
 

@@ -5,13 +5,17 @@ import java.util.List;
 public class OrderRequest {
     private String deliveryTime;
     private int userId;
-    private int shipperId;
+    private Integer shipperId;
+    private String status;
+    private int storeId;
     private List<OrderItem> items;
 
-    public OrderRequest(String deliveryTime, int userId, int shipperId, List<OrderItem> items) {
+    public OrderRequest(String deliveryTime, int userId, Integer shipperId, String status, int storeId , List<OrderItem> items) {
         this.deliveryTime = deliveryTime;
         this.userId = userId;
         this.shipperId = shipperId;
+        this.status = status;
+        this.storeId = storeId;
         this.items = items;
     }
 
@@ -40,6 +44,14 @@ public class OrderRequest {
 
     public void setShipperId(int shipperId) {
         this.shipperId = shipperId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<OrderItem> getItems() {

@@ -17,7 +17,7 @@
         android:icon="@drawable/cart"
         android:title="@string/cart"
         app:actionLayout="@layout/cart_action_view"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/icon_profile"

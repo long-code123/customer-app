@@ -6,17 +6,17 @@ public class CartItem {
     private double price;
     private int quantity;
     private String foodImage;
+    private int storeId;
 
-    // Constructor
-    public CartItem(int id, String foodName, double price, int quantity, String foodImage) {
+    public CartItem(int id, String foodName, double price, int quantity, String foodImage, int storeId) {
         this.id = id;
         this.foodName = foodName;
         this.price = price;
         this.quantity = quantity;
         this.foodImage = foodImage;
+        this.storeId = storeId;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -55,5 +55,13 @@ public class CartItem {
 
     public void setFoodImage(String foodImage) {
         this.foodImage = foodImage;
+    }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 }

@@ -101,7 +101,7 @@ public class FoodActivity extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> {
-            CartItem cartItem = new CartItem(foodId, foodName, foodPrice, quantity, foodImage);
+            CartItem cartItem = new CartItem(foodId, foodName, foodPrice, quantity, foodImage, storeId);
             CartManager.getInstance().addToCart(cartItem);
             totalItems += quantity;
             totalPrice += quantity * foodPrice;

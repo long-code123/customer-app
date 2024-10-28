@@ -9,6 +9,11 @@
       </config>
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_delivery_progress.xml">
+        <config>
+          <theme>@style/Theme.OrderFoodApp</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_direction_map.xml">
         <config>
           <theme>@style/Theme.OrderFoodApp</theme>
@@ -60,11 +65,6 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-        <config>
-          <theme>@style/Theme.OrderFoodApp</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
         <config>
           <theme>@style/Theme.OrderFoodApp</theme>
         </config>
@@ -136,7 +136,31 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f0ad8b7-3487-47e8-934b-013785482b37" name="Changes" comment="" />
+    <list default="true" id="4f0ad8b7-3487-47e8-934b-013785482b37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/API/OrderAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/API/StoreOKAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Model/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/backgrounddeliveryyyy.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/deliveredicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/deliveryicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/pendingicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/receivedicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/shippingicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/API/StoreAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/API/StoreAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/DeliveryProgressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/DeliveryProgressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/FoodActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/FoodActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/OSMActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Activity/OSMActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Fragment/CartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Fragment/CartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Fragment/VoucherFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Fragment/VoucherFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Model/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Model/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Model/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/app/orderfoodapp/Model/OrderRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_delivery_progress.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_delivery_progress.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_food.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_food.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,9 +180,9 @@
       <list>
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -176,19 +200,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "D:/AndroidStudioProjects/OrderFoodApp",
-    "project.structure.last.edited": "Dependencies",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AndroidStudioProjects/OrderFoodApp/app/src/main/res/drawable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Dependencies&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-1084112962">
       <recent name="com.app.orderfoodapp" />
@@ -209,12 +233,14 @@
       <recent name="com.app.orderfoodapp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AndroidStudioProjects\OrderFoodApp\app\src\main\res\drawable" />
       <recent name="C:\Users\Asus\AndroidStudioProjects\OrderFoodApp\app\src\main\java\com\app\orderfoodapp\Zalo" />
     </key>
     <key name="android.template.523090158">
       <recent name="com.app.orderfoodapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\AndroidStudioProjects\OrderFoodApp\app\src\main\res\drawable" />
       <recent name="C:\Users\Asus\AndroidStudioProjects\OrderFoodApp\app\src\main\res\drawable" />
       <recent name="C:\Users\Asus\AndroidStudioProjects\OrderFoodApp\app\src\main\res\mipmap-hdpi" />
       <recent name="C:\Users\Asus\AndroidStudioProjects\OrderFoodApp\app\src\main\res\layout\item" />

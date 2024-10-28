@@ -32,7 +32,6 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.VoucherS
     private List<Voucher> voucherList;
 
     public VoucherFragment() {
-        // Constructor rỗng cần thiết
     }
 
     @Override
@@ -60,14 +59,14 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.VoucherS
                     voucherAdapter.notifyDataSetChanged();
                 } else {
                     Log.e("VoucherFragment", "Response unsuccessful or body is null");
-                    Toast.makeText(getContext(), "Không thể tải voucher", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Fetch voucher failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Voucher>> call, Throwable t) {
                 Log.e("VoucherFragment", "Lỗi: " + t.getMessage());
-                Toast.makeText(getContext(), "Lỗi khi tải voucher", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error voucher", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -76,18 +75,16 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.VoucherS
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("app_preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // Lưu thông tin voucher vào SharedPreferences
-        editor.putInt("voucherId", voucher.getVoucherId()); // Lưu ID voucher
-        editor.putString("voucherDescription", voucher.getDescription()); // Lưu mô tả voucher
-        editor.putFloat("voucherValue", (float) voucher.getValue()); // Chuyển đổi từ double sang float
-        editor.apply(); // Áp dụng thay đổi
+        editor.putInt("voucherId", voucher.getVoucherId());
+        editor.putString("voucherDescription", voucher.getDescription());
+        editor.putFloat("voucherValue", (float) voucher.getValue());
+        editor.apply();
     }
 
     @Override
     public void onVoucherSelected(Voucher voucher) {
         saveVoucherToPreferences(voucher);
-        // Lưu voucher để sử dụng sau (ví dụ: lưu vào SharedPreferences hoặc ViewModel)
-        Toast.makeText(getContext(), "Voucher đã được chọn: " + voucher.getDescription(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Voucher is chose: " + voucher.getDescription(), Toast.LENGTH_SHORT).show();
 
         // Gọi API xóa voucher
         deleteVoucherFromAPI(voucher.getVoucherId());
@@ -98,16 +95,21 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.VoucherS
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Xóa voucher thành công", Toast.LENGTH_SHORT).show();
-                    // Có thể refresh lại danh sách voucher ở đây
-                } else {
-                    Toast.makeText(getContext(), "Không thể xóa voucher", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Delete voucher succeed", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < voucherList.size(); i++) {
+                        if (voucherList.get(i).getVoucherId() == voucherId) {
+                            voucherList.remove(i);
+                            voucherAdapter.notifyItemRemoved(i);
+                            break;
+                        }
+                    }                } else {
+                    Toast.makeText(getContext(), "Delete voucher fail", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getContext(), "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
